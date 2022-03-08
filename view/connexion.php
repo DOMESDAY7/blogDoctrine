@@ -1,14 +1,15 @@
 <?php ob_start(); ?>
-<section>
-    <div>
+<main>
         <h1>Connexion</h1>
-        <input type="text"><br>
-        <input type="password"><br>
-        <input type="submit" name="subLog" value="se connecter">
-    </div>
-</section>
+        <form method="POST">
+            <input type="text" id=login name=login><br>
+            <input type="password" name="mdp" id="mdp"><br>
+            <input type="submit" name="subLog" value="se connecter">
+        </form>
+</main>
 
 <a href="#">Inscription</a>
 <?php
 $main = ob_get_clean();
+$pageTitle = "Connexion";
 require "./template/base.php";

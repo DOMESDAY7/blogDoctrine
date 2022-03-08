@@ -10,14 +10,18 @@ require "bootstrap.php";
 
 //connexion
 
-// if(!isset($_SESSION)){
-    $pathModel= "./model/connexion.php";
-    $pathView = "./view/connexion.php";
+if(isset($_GET["page"])){
+    $page=$_GET["page"];
+    $pathModel= "./model/$page.php";
+    $pathView = "./view/$page.php";
     if(file_exists($pathModel)){
         require $pathModel;
-        if(file_exists($pathView)){
-            require $pathView;
-        }
+    }
+    if(file_exists($pathView)){
+        require $pathView;
     }
 
-// }
+}else{
+    //header(Location:./home)
+    echo "page not defined";
+}
