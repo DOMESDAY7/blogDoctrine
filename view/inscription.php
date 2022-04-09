@@ -1,4 +1,4 @@
-<?php ob_start() ?>
+    <?php ob_start() ?>
 <main>
     <h1>Inscription</h1>
     <form method="POST">

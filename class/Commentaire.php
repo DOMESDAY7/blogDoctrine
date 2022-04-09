@@ -8,19 +8,19 @@ class Commentaire{
        /**
      * @commentaire @Column(type="text") 
      */
-    private $commentaire;
+    private $contenu;
    /**
      * @ManyToOne(targetEntity="Utilisateur")
      */
-    private $user;
+    private $utilisateur;
     /**
      * @dateTime @Column(type="date")
      */
     private $dateTime;
      /**
-     * @ManyToOne(targetEntity="Message")
+     * @ManyToOne(targetEntity="Article")
      */
-    private $message;
+    private $article;
 
     public function setIdCommentaire($idCommentaire)
     {
@@ -36,30 +36,30 @@ class Commentaire{
     }
 
 
-    public function setCommentaire($commentaire)
+    public function setContenu($contenu)
     {
-        $this->commentaire = $commentaire;
+        $this->contenu = $contenu;
 
         return $this;
     }
 
-    public function getCommentaire()
+    public function getContenu()
     {
-        return $this->commentaire;
+        return $this->contenu;
     }
 
  
-    public function setExtUser($extUser)
+    public function setUtilisateur($utilisateur)
     {
-        $this->ext_user = $extUser;
+        $this->utilisateur = $utilisateur;
 
         return $this;
     }
 
   
-    public function getExtUser()
+    public function getUtilisateur()
     {
-        return $this->ext_user;
+        return $this->utilisateur;
     }
     public function setDateTime($dateTime)
     {
@@ -82,6 +82,21 @@ class Commentaire{
     public function getExtMessage()
     {
         return $this->ext_message;
+    }
+    public function __construct(array $array)
+    {
+        $this->hydrate($array);
+    }
+
+    public function hydrate(array $array)
+    {
+        foreach ($array as $key => $value) {
+
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
     }
 
 }

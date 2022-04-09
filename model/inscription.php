@@ -1,10 +1,10 @@
 <?php
-if (isset($_POST["sub"])) { 
-    try{
-        $user = new Utilisateur($_POST);
-        $entityManager->persist($user);
-        $entityManager->flush();
-    }catch(Exception $e){
-        $e->getMessage();
-    }
+
+try {
+    $user = new Utilisateur($data);
+    $entityManager->persist($user);
+    $entityManager->flush();
+    echo json_encode(["success" => true]);
+} catch (Exception $e) {
+    echo json_encode(["success" => false]);
 }

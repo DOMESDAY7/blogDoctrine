@@ -1,11 +1,11 @@
 <?php
 
-/** @Entity @Table(name="message")**/
-class Message
+/** @Entity**/
+class Article
 {
     /** @Id @Column(type="integer") @GeneratedValue**/
     private $id;
-    /** @texte @Column(type="string",length=255) **/
+    /** @texte @Column(type="text") **/
     private $texte;
     /** @datepost @Column(type="date") **/
     private $datepost;
@@ -13,6 +13,19 @@ class Message
      * @ManyToOne(targetEntity="Utilisateur")
      */
     private $utilisateur;
+    /** @texte @Column(type="string",length=55) **/
+    private $titre;
+
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+    public function getTitre()
+    {
+        return $this->titre;
+    }
     public function getUtilisateur()
     {
         return $this->utilisateur;
@@ -45,6 +58,7 @@ class Message
 
     public function setDatepost($datepost)
     {
+        
         $this->datepost = $datepost;
 
         return $this;
@@ -54,5 +68,21 @@ class Message
     public function getDatepost()
     {
         return $this->datepost;
+    }
+    
+    public function __construct(array $array)
+    {
+        $this->hydrate($array);
+    }
+
+    public function hydrate(array $array)
+    {
+        foreach ($array as $key => $value) {
+
+            $method = 'set' . ucfirst($key);
+            if (method_exists($this, $method)) {
+                $this->$method($value);
+            }
+        }
     }
 }

@@ -1,27 +1,38 @@
 <?php
+// Allow from any origin
+if (isset($_SERVER['HTTP_ORIGIN'])) {
+    header("Access-Control-Allow-Origin: {$_SERVER['HTTP_ORIGIN']}");
+    header('Access-Control-Allow-Credentials: true');
+    header('Access-Control-Max-Age: 86400');    // cache for 1 day
+}
 
-// require "./template/livre.php";
+// Access-Control headers are received during OPTIONS requests
+if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_METHOD']))
+        header("Access-Control-Allow-Methods: GET, POST, OPTIONS");
+
+    if (isset($_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']))
+        header("Access-Control-Allow-Headers:        {$_SERVER['HTTP_ACCESS_CONTROL_REQUEST_HEADERS']}");
+
+    exit(0);
+}
 
 
+//récupération des données en post
+$data= json_decode(file_get_contents("php://input"),true);
 
 require "bootstrap.php";
-// require "./model/creer_message.php";
-// require "./model/affiche_message.php";
 
-//connexion
-
-if(isset($_GET["page"])){
-    $page=$_GET["page"];
-    $pathModel= "./model/$page.php";
-    $pathView = "./view/$page.php";
-    if(file_exists($pathModel)){
+if (isset($_GET["action"])) {
+    $action = $_GET["action"];
+    $pathModel = "./model/$action.php";
+    if (file_exists($pathModel)) {
         require $pathModel;
-    }
-    if(file_exists($pathView)){
-        require $pathView;
+    } else {
+        echo "404";
     }
 
-}else{
-    //header(Location:./home)
-    echo "page not defined";
+} else {
+    echo "action not defined";
 }
