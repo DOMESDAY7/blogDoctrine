@@ -138,28 +138,4 @@ class Commentaire
     {
         return $this->message;
     }
-
-    /**
-     * Set article.
-     *
-     * @param \Article|null $article
-     *
-     * @return Commentaire
-     */
-    public function setArticle(\Article $article = null)
-    {
-        $this->article = $article;
-
-        return $this;
-    }
-
-    /**
-     * Get article.
-     *
-     * @return \Article|null
-     */
-    public function getArticle()
-    {
-        return $this->article;
-    }
 }
