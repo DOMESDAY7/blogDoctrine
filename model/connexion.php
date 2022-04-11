@@ -11,7 +11,7 @@ if (isset($data)) {
         $mdpDb =$user->getPasswd();
         if(password_verify($mdp,$mdpDb)){
             $expiration=time() + 3600;
-            $secret = "@arnakeuseDU93";
+           
             $id = $user->getId();
             //création d'un token utilisé pour la connexion
             $token=Token::create($id,$secret,$expiration,$_SERVER['SERVER_NAME']);

@@ -23,14 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'OPTIONS') {
 $data= json_decode(file_get_contents("php://input"),true);
 
 require "bootstrap.php";
-
+//secret utilisé pour la génération de token
+$secret = "@arnakeuseDU93";
 if (isset($_GET["action"])) {
     $action = $_GET["action"];
     $pathModel = "./model/$action.php";
     if (file_exists($pathModel)) {
         require $pathModel;
     } else {
-        echo "404";
+        header("HTTP/1.0 404 Not Found");
     }
 
 } else {

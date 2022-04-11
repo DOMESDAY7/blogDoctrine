@@ -20,6 +20,11 @@ class Utilisateur
      * 
      */
     private $pseudo;
+    /**
+     * @cite @Column(type="text",nullable=true) 
+     * 
+     */
+    private $cite;
     public function getId()
     {
         return $this->id;
@@ -42,7 +47,7 @@ class Utilisateur
     public function setPasswd($passwd)
     {
         $passwd = htmlspecialchars($passwd);
-        $passwd = password_hash($passwd,PASSWORD_DEFAULT);
+        $passwd = password_hash($passwd, PASSWORD_DEFAULT);
         $this->passwd = $passwd;
 
         return $this;

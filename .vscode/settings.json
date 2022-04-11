@@ -1,6 +1,8 @@
 {
     "conventionalCommits.scopes": [
         "inscription/connexion/ajoutArticle",
-        "jeton de connexion"
+        "jeton de connexion",
+        "li_article",
+        "*"
     ]
 }

@@ -22,7 +22,7 @@ class Commentaire{
      */
     private $article;
 
-    public function setIdCommentaire($idCommentaire)
+    public function setIdCommentaire(Int $idCommentaire)
     {
         $this->id_commentaire = $idCommentaire;
 
@@ -36,7 +36,7 @@ class Commentaire{
     }
 
 
-    public function setContenu($contenu)
+    public function setContenu(String $contenu)
     {
         $this->contenu = $contenu;
 
@@ -49,7 +49,7 @@ class Commentaire{
     }
 
  
-    public function setUtilisateur($utilisateur)
+    public function setUtilisateur(Utilisateur $utilisateur)
     {
         $this->utilisateur = $utilisateur;
 
@@ -61,9 +61,9 @@ class Commentaire{
     {
         return $this->utilisateur;
     }
-    public function setDateTime($dateTime)
+    public function setDateTime()
     {
-        $this->dateTime = $dateTime;
+        $this->dateTime =new DateTime();
 
         return $this;
     }
@@ -72,17 +72,17 @@ class Commentaire{
     {
         return $this->dateTime;
     }
-    public function setExtMessage($extMessage)
+    public function setArticle(Article $article)
     {
-        $this->ext_message = $extMessage;
+        $this->article = $article;
 
         return $this;
     }
 
-    public function getExtMessage()
-    {
-        return $this->ext_message;
-    }
+    // public function getExtMessage()
+    // {
+    //     return $this->ext_message;
+    // }
     public function __construct(array $array)
     {
         $this->hydrate($array);
