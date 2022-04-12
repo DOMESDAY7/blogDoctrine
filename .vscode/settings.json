@@ -3,6 +3,7 @@
         "inscription/connexion/ajoutArticle",
         "jeton de connexion",
         "li_article",
-        "*"
+        "*",
+        "getUser"
     ]
 }

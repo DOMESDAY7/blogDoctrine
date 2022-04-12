@@ -25,6 +25,11 @@ class Utilisateur
      * 
      */
     private $cite;
+    /**
+     * @cite_author @Column(type="text",nullable=true) 
+     * 
+     */
+    private $cite_author;
     public function getId()
     {
         return $this->id;
@@ -38,10 +43,36 @@ class Utilisateur
 
         return $this;
     }
+    
 
     public function getLogin()
     {
         return $this->login;
+    }
+    public function setCite_author($cite_author)
+    {
+        $cite_author = htmlspecialchars($cite_author);
+        $this->cite_author = $cite_author;
+
+        return $this;
+    }
+    
+
+    public function getCite_author()
+    {
+        return $this->cite_author;
+    }
+    public function setCite($cite)
+    {
+        $cite = htmlspecialchars($cite);
+        $this->cite = $cite;
+
+        return $this;
+    }
+
+    public function getCite()
+    {
+        return $this->cite;
     }
 
     public function setPasswd($passwd)
