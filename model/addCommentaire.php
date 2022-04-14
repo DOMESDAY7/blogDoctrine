@@ -1,5 +1,5 @@
 <?php
-try{
+try {
     $commentaire = new Commentaire($data);
     $article = $entityManager->find('Article', $data["article_id"]);
     $utilisateur = $entityManager->find('Utilisateur', $data["utilisateur_id"]);
@@ -9,6 +9,6 @@ try{
     $entityManager->flush();
     //valeur de retour si réussite
     echo json_encode(["sucess" => true]);
-}catch(Exception $e){
+} catch (Exception $e) {
     echo $e->getMessage();
 }

@@ -9,7 +9,6 @@ class Article
     private $texte;
     /** @datepost @Column(type="date") **/
     private $datepost;
-    
     /** @texte @Column(type="string",length=55) **/
     private $titre;
     /** @texte @Column(type="string",length=525) **/
@@ -18,18 +17,31 @@ class Article
     private $img1;
     /** @texte @Column(type="string",length=525) **/
     private $img2;
-    
+    /**
+     * @ManyToOne(targetEntity="Article")
+     */
+    private $categorie;
+
     public function setTitre($titre)
     {
         $this->titre = $titre;
-
         return $this;
     }
     public function getTitre()
     {
         return $this->titre;
     }
-    
+    public function setCategorie($categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
+
     public function getId()
     {
         return $this->id;
@@ -49,7 +61,7 @@ class Article
 
     public function setDatepost($datepost)
     {
-        
+
         $this->datepost = $datepost;
 
         return $this;
@@ -60,7 +72,7 @@ class Article
     {
         return $this->datepost;
     }
-    
+
     public function setMiniature($miniature)
     {
         $this->miniature = $miniature;
@@ -68,7 +80,7 @@ class Article
         return $this;
     }
 
-    
+
     public function getMiniature()
     {
         return $this->miniature;
@@ -81,13 +93,13 @@ class Article
         return $this;
     }
 
-   
+
     public function getImg1()
     {
         return $this->img1;
     }
 
-    
+
     public function setImg2($img2)
     {
         $this->img2 = $img2;
@@ -95,12 +107,12 @@ class Article
         return $this;
     }
 
-   
+
     public function getImg2()
     {
         return $this->img2;
     }
-    
+
     public function __construct(array $array)
     {
         $this->hydrate($array);

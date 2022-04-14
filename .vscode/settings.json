@@ -4,6 +4,7 @@
         "jeton de connexion",
         "li_article",
         "*",
-        "getUser"
+        "getUser",
+        "categorie"
     ]
 }
