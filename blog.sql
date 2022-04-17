@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : 127.0.0.1
--- Généré le : mar. 12 avr. 2022 à 22:08
+-- Généré le : dim. 17 avr. 2022 à 20:37
 -- Version du serveur : 10.4.22-MariaDB
--- Version de PHP : 8.1.2
+-- Version de PHP : 8.1.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -34,15 +34,35 @@ CREATE TABLE `article` (
   `titre` varchar(55) COLLATE utf8_unicode_ci NOT NULL,
   `miniature` varchar(525) COLLATE utf8_unicode_ci NOT NULL,
   `img1` varchar(525) COLLATE utf8_unicode_ci NOT NULL,
-  `img2` varchar(525) COLLATE utf8_unicode_ci NOT NULL
+  `img2` varchar(525) COLLATE utf8_unicode_ci NOT NULL,
+  `categorie_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Déchargement des données de la table `article`
 --
 
-INSERT INTO `article` (`id`, `texte`, `datepost`, `titre`, `miniature`, `img1`, `img2`) VALUES
-(1, 'test', '2022-03-21', 'test', '', '', '');
+INSERT INTO `article` (`id`, `texte`, `datepost`, `titre`, `miniature`, `img1`, `img2`, `categorie_id`) VALUES
+(1, 'test', '2022-03-21', 'test', '', '', '', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `categorie`
+--
+
+CREATE TABLE `categorie` (
+  `id_categorie` int(11) NOT NULL,
+  `categorie_nom` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Déchargement des données de la table `categorie`
+--
+
+INSERT INTO `categorie` (`id_categorie`, `categorie_nom`) VALUES
+(1, 'drama'),
+(2, 'livre');
 
 -- --------------------------------------------------------
 
@@ -70,7 +90,19 @@ INSERT INTO `commentaire` (`id_commentaire`, `contenu`, `dateTime`, `utilisateur
 (5, 'test', '2022-04-10', NULL, NULL),
 (6, 'test', '2022-04-10', NULL, NULL),
 (7, 'test', '2022-04-10', NULL, NULL),
-(9, 'test', '2022-04-10', 2, 1);
+(9, 'test', '2022-04-10', 2, 1),
+(10, 'test', '2022-04-17', 2, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `souscategorie`
+--
+
+CREATE TABLE `souscategorie` (
+  `sous_categorie` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `id_sous_categorie` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -84,7 +116,7 @@ CREATE TABLE `utilisateur` (
   `passwd` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `pseudo` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   `cite` longtext COLLATE utf8_unicode_ci DEFAULT NULL,
-  `cite_author` varchar(50) COLLATE utf8_unicode_ci NOT NULL
+  `cite_author` longtext COLLATE utf8_unicode_ci DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -113,7 +145,14 @@ INSERT INTO `utilisateur` (`id`, `login`, `passwd`, `pseudo`, `cite`, `cite_auth
 -- Index pour la table `article`
 --
 ALTER TABLE `article`
-  ADD PRIMARY KEY (`id`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `IDX_CD8737FABCF5E72D` (`categorie_id`);
+
+--
+-- Index pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  ADD PRIMARY KEY (`id_categorie`);
 
 --
 -- Index pour la table `commentaire`
@@ -122,6 +161,12 @@ ALTER TABLE `commentaire`
   ADD PRIMARY KEY (`id_commentaire`),
   ADD KEY `IDX_E16CE76B7294869C` (`article_id`),
   ADD KEY `IDX_E16CE76BFB88E14F` (`utilisateur_id`);
+
+--
+-- Index pour la table `souscategorie`
+--
+ALTER TABLE `souscategorie`
+  ADD PRIMARY KEY (`id_sous_categorie`);
 
 --
 -- Index pour la table `utilisateur`
@@ -140,10 +185,22 @@ ALTER TABLE `article`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT pour la table `categorie`
+--
+ALTER TABLE `categorie`
+  MODIFY `id_categorie` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
 -- AUTO_INCREMENT pour la table `commentaire`
 --
 ALTER TABLE `commentaire`
-  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id_commentaire` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT pour la table `souscategorie`
+--
+ALTER TABLE `souscategorie`
+  MODIFY `id_sous_categorie` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT pour la table `utilisateur`
@@ -154,6 +211,12 @@ ALTER TABLE `utilisateur`
 --
 -- Contraintes pour les tables déchargées
 --
+
+--
+-- Contraintes pour la table `article`
+--
+ALTER TABLE `article`
+  ADD CONSTRAINT `FK_CD8737FABCF5E72D` FOREIGN KEY (`categorie_id`) REFERENCES `article` (`id`);
 
 --
 -- Contraintes pour la table `commentaire`
