@@ -5,6 +5,7 @@
         "li_article",
         "*",
         "getUser",
-        "categorie"
+        "categorie",
+        "souscategorie"
     ]
 }

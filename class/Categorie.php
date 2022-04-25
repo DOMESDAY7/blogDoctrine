@@ -6,24 +6,24 @@ class Categorie
     /**
      * @id @Column(type="integer") @GeneratedValue
      */
-    private $id_categorie;
+    private $id;
     /**
      *  @categorie_nom @Column(type="string",length=50,nullable=false) 
      * 
      */
     private $categorie_nom;
     
-    public function setId_categorie(Int $id_categorie)
+    public function setId(Int $id)
     {
-        $this->id_categorie = $id_categorie;
+        $this->id = $id;
 
         return $this;
     }
 
    
-    public function getId_categorie()
+    public function getId()
     {
-        return $this->id_categorie;
+        return $this->id;
     }
     
     public function setCategorie_nom(Int $categorie_nom)

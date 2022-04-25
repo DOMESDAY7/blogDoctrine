@@ -6,7 +6,7 @@ class SousCategorie
     /**
      * @id @Column(type="integer") @GeneratedValue
      */
-    private $id_sous_categorie;
+    private $id;
     /**
      *  @Column(type="string",length=50,nullable=false) 
      * 
@@ -17,17 +17,17 @@ class SousCategorie
      */
     private $categorie;
     
-    public function setId_Sous_categorie(Int $id_sous_categorie)
+    public function setId(Int $id)
     {
-        $this->id_sous_categorie = $id_sous_categorie;
+        $this->id = $id;
 
         return $this;
     }
 
    
-    public function getIdSous_categorie()
+    public function getId()
     {
-        return $this->id_sous_categorie;
+        return $this->id;
     }
     
     public function setSous_categorie(Int $sous_categorie)
