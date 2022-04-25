@@ -42,4 +42,17 @@ class SousCategorie
     {
         return $this->sous_categorie;
     }
+
+    public function setCategorie(Int $categorie)
+    {
+        $this->categorie = $categorie;
+
+        return $this;
+    }
+
+   
+    public function getCategorie()
+    {
+        return $this->categorie;
+    }
 }

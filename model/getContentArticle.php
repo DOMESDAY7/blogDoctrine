@@ -1,5 +1,6 @@
 <?php
-//affichage de l'article
+//affichage de l'article et des commentaire
+//préciser l'[id] de l'article en post
 
 use Doctrine\ORM\Mapping\Entity;
 
@@ -15,23 +16,23 @@ function getArticleAndCom($id_article, $entityManager)
    $coms = $reqCom->findBy(array("article" => $data));
    foreach ($coms as $com) {
       $arrayCom[] = array(
-         "contenu" => $com->getContenu(),
-         "utilisateur" => array(
-            "login" => $com->getUtilisateur()->getLogin(),
-            "id_utilisateur" => $com->getUtilisateur()->getId(),
-            "pseudo" => $com->getUtilisateur()->getPseudo(),
+         "contenu"               => $com->getContenu(),
+         "utilisateur"           => array(
+            "login"           => $com->getUtilisateur()->getLogin(),
+            "id_utilisateur"  => $com->getUtilisateur()->getId(),
+            "pseudo"          => $com->getUtilisateur()->getPseudo(),
          ),
-         "id_commentaire" => $com->getIdCommentaire(),
-         "date" => $com->getDateTime(),
-         
+         "id_commentaire"        => $com->getIdCommentaire(),
+         "date"                  => $com->getDateTime(),
+
       );
    }
    $array = array(
       "article" => [
-         "id_article" => $data->getId(),
-         "titre" => $data->getTitre(),
-         "texte" => $data->getTexte(),
-         "id" => $data->getTexte()
+         "id_article"   => $data->getId(),
+         "id"           => $data->getTexte(),
+         "titre"        => $data->getTitre(),
+         "texte"        => $data->getTexte(),
       ],
       "commentaires" => $arrayCom,
       "success" => true
