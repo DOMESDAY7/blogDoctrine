@@ -10,7 +10,7 @@ if (isset($data)) {
 }
 //function qui affiche l'article et les commentaires associés
 function getArticleAndCom($id_article, $entityManager)
-{
+{  $arrayCom = [];
    $data = $entityManager->find('Article', $id_article);
    $reqCom = $entityManager->getRepository("Commentaire");
    $coms = $reqCom->findBy(array("article" => $data));

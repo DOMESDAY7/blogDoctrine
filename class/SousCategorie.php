@@ -14,10 +14,11 @@ class SousCategorie
     private $sous_categorie;
      /**
      * @ManyToOne(targetEntity="Categorie")
+     * 
      */
     private $categorie;
     
-    public function setId(Int $id)
+    public function setId_sous_categorie(Int $id)
     {
         $this->id = $id;
 
@@ -25,7 +26,7 @@ class SousCategorie
     }
 
    
-    public function getId()
+    public function getId_sous_categorie()
     {
         return $this->id;
     }

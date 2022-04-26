@@ -12,7 +12,7 @@ class Categorie
      * 
      */
     private $categorie_nom;
-    
+
     public function setId_categorie(Int $id)
     {
         $this->id = $id;
@@ -20,12 +20,12 @@ class Categorie
         return $this;
     }
 
-   
+
     public function getId_categorie()
     {
         return $this->id;
     }
-    
+
     public function setCategorie_nom(Int $categorie_nom)
     {
         $this->categorie_nom = $categorie_nom;
@@ -33,7 +33,7 @@ class Categorie
         return $this;
     }
 
-   
+
     public function getCategorie_nom()
     {
         return $this->categorie_nom;

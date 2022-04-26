@@ -18,9 +18,20 @@ class Article
     /** @texte @Column(type="string",length=525) **/
     private $img2;
     /**
-     * @ManyToOne(targetEntity="Article")
+     * @ManyToOne(targetEntity="SousCategorie")
+     * 
      */
-    private $categorie;
+    private $sousCategorie;
+
+    public function setId($id)
+    {
+        $this->id = $id;
+        return $this;
+    }
+    public function getId()
+    {
+        return $this->id;
+    }
 
     public function setTitre($titre)
     {
@@ -31,21 +42,17 @@ class Article
     {
         return $this->titre;
     }
-    public function setCategorie($categorie)
+    public function setSousCategorie($sousCategorie)
     {
-        $this->categorie = $categorie;
+        $this->sousCategorie = $sousCategorie;
 
         return $this;
     }
-    public function getCategorie()
+    public function getSousCategorie()
     {
-        return $this->categorie;
+        return $this->sousCategorie;
     }
 
-    public function getId()
-    {
-        return $this->id;
-    }
     public function setTexte($texte)
     {
         $this->texte = $texte;

@@ -13,7 +13,7 @@ foreach ($tab_sous_categorieObject as $one_sous_categorie) {
     if (isset($_GET['categorie'])) {
         $array_sous_categorie[] =
             [
-                "sous_categorie_id"     => $one_sous_categorie->getId(),
+                "sous_categorie_id"     => $one_sous_categorie->getId_sous_categorie(),
                 "sous_categorie"        => $one_sous_categorie->getSous_categorie(),
                 'categorie_id'          => $categorie->getId_categorie(),
 
@@ -21,7 +21,7 @@ foreach ($tab_sous_categorieObject as $one_sous_categorie) {
     } else {
         $array_sous_categorie[$categorie->getCategorie_nom()][] =
             [
-                "sous_categorie_id"     => $one_sous_categorie->getId(),
+                "sous_categorie_id"     => $one_sous_categorie->getId_sous_categorie(),
                 "sous_categorie"        => $one_sous_categorie->getSous_categorie(),
                 'categorie_id'          => $categorie->getId_categorie(),
 
