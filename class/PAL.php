@@ -18,5 +18,17 @@ class PAL {
     public function getId() {
         return $this->id;
     }
+    public function getUtilisateur() {
+        return $this->utilisateur;
+    }
+    public function setUtilisateur(Utilisateur $utilisateur) {
+        $this->utilisateur = $utilisateur;
+    }
+    public function getArticle() {
+        return $this->article;
+    }
+    public function setArticle(Article $article) {
+        $this->article = $article;
+    }
    
 }
